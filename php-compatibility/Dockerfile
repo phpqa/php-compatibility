@@ -33,3 +33,4 @@ RUN composer global require --dev wimg/php-compatibility
 VOLUME ["/app"]
 WORKDIR "/app"
 ENTRYPOINT ["/sbin/tini", "--", "phpcs"]
+CMD ["--help"]
