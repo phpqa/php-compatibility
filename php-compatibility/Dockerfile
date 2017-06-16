@@ -26,7 +26,8 @@ RUN composer global require --dev squizlabs/php_codesniffer:2.*
 # Install PHPCompatibility - https://github.com/wimg/PHPCompatibility
 
 RUN echo "date.timezone=Europe/Brussels" > $PHP_INI_DIR/conf.d/timezone.ini
-RUN composer global require --dev wimg/php-compatibility
+RUN composer global require --dev wimg/php-compatibility:dev-feature/fix-102-107-directory-layout \
+    && phpcs --config-set installed_paths /composer/vendor/wimg/php-compatibility
 
 # Package container
 
