@@ -23,7 +23,7 @@ RUN apk add --no-cache tini
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
 RUN composer global require --dev squizlabs/php_codesniffer:2.*
 
-# Install PHP Compatibility Coding Standard - https://github.com/wimg/PHPCompatibility
+# Install PHPCompatibility - https://github.com/wimg/PHPCompatibility
 
 RUN echo "date.timezone=Europe/Brussels" > $PHP_INI_DIR/conf.d/timezone.ini
 RUN composer global require --dev wimg/php-compatibility
