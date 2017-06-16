@@ -16,8 +16,7 @@ RUN curl https://getcomposer.org/installer -o /tmp/composer-setup.php \
 
 # Install Tini - https://github.com/krallin/tini
 
-RUN apk add --update --no-cache tini \
-    && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
+RUN apk add --no-cache tini
 
 # Install PHP CodeSniffer - https://github.com/squizlabs/PHP_CodeSniffer
 
