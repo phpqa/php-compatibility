@@ -1,9 +1,9 @@
 # Set defaults
 
 ARG BASE_IMAGE="php:7.2-alpine"
-ARG PACKAGIST_NAME="wimg/php-compatibility"
+ARG PACKAGIST_NAME="phpcompatibility/php-compatibility"
 ARG PHPQA_NAME="php-compatibility"
-ARG VERSION="8.1.0"
+ARG VERSION="8.2.0"
 
 # Build image
 
@@ -25,9 +25,10 @@ RUN apk add --no-cache tini
 COPY --from=composer:1.6.5 /usr/bin/composer /usr/bin/composer
 RUN COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME="/composer" \
-    composer global require --prefer-dist --no-progress --dev ${PACKAGIST_NAME}:${VERSION}
-RUN /composer/vendor/bin/phpcs --config-set installed_paths /composer/vendor/wimg/php-compatibility/PHPCompatibility
-RUN /composer/vendor/bin/phpcs --config-set default_standard /composer/vendor/wimg/php-compatibility/PHPCompatibility
+    composer global require --prefer-dist --no-progress --dev ${PACKAGIST_NAME}:${VERSION} phpcompatibility/phpcompatibility-all
+RUN /composer/vendor/bin/phpcs --config-set installed_paths /composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility
+RUN /composer/vendor/bin/phpcs --config-set default_standard /composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility
+RUN ln -s /composer/vendor/bin/phpcs /composer/vendor/bin/phpcompatibility
 RUN ln -s /composer/vendor/bin/phpcs /composer/vendor/bin/php-compatibility
 ENV PATH /composer/vendor/bin:${PATH}
 

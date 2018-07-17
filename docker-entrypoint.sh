@@ -3,6 +3,10 @@ set -e
 
 if [ "$(printf %c "$1")" = '-' ]; then
   set -- /sbin/tini -- php /composer/vendor/bin/php-compatibility "$@"
+elif [ "$1" = "/composer/vendor/bin/phpcompatibility" ]; then
+  set -- /sbin/tini -- php "$@"
+elif [ "$1" = "phpcompatibility" ]; then
+  set -- /sbin/tini -- php /composer/vendor/bin/"$@"
 elif [ "$1" = "/composer/vendor/bin/php-compatibility" ]; then
   set -- /sbin/tini -- php "$@"
 elif [ "$1" = "php-compatibility" ]; then
